@@ -239,3 +239,10 @@ table {
     max-width: 100%;
     height: auto;
 }
+
+
+
+
+@media  (device-width: 390px) and (device-height: 844px) { 
+     .grid-container
+}
