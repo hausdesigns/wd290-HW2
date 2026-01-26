@@ -244,5 +244,10 @@ table {
 
 
 @media  (device-width: 390px) and (device-height: 844px) { 
-     .grid-container
+     .grid-container {
+        padding-top: 10px;
+        display: grid;
+        grid-template-columns: (1fr);
+        align-items: center;
+     }
 }
