@@ -310,6 +310,11 @@ table {
     margin-top: 30px;
 }
 
+.footer-text-align {
+    display: grid;
+    text-align: center ;
+
+}
 
 
 
@@ -331,7 +336,7 @@ table {
   }
 
   .font {
-    font-size: 2.5rem;          
+    font-size: 3rem;          
     line-height: 1.1;
   }
 
