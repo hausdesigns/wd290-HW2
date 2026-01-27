@@ -300,6 +300,7 @@ table {
 }
 
 .footer {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
@@ -313,7 +314,14 @@ table {
 .footer-text-align {
     display: grid;
     text-align: center ;
+    
 
+}
+
+
+.footer-contact-info {
+    display: grid;
+    text-align: left;
 }
 
 
@@ -355,11 +363,8 @@ table {
   header h4 {
     font-size: 0.9rem;
   }
-}
 
-@media screen and (max-width: 430px) {
-
-  .navbar {
+.navbar {
     grid-template-columns: 1fr;
     text-align: center;
   }
@@ -369,5 +374,17 @@ table {
     justify-content: center;
   }
 
+   .footer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
 }
+
+
+
+
+
+
+
 
