@@ -208,7 +208,7 @@ table {
 .font2 {
     font-family: 'Georgia', serif;
     color: #420606;
-    font-size: 50px;
+    font-size: 55px;
 }
 
 .grid-item4 {
@@ -299,6 +299,16 @@ table {
     height: auto;
 }
 
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    background-color: #420606;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 30px;
+}
 
 
 
