@@ -321,8 +321,205 @@ table {
 
 .footer-contact-info {
     display: grid;
-    text-align: left;
+    text-align: center;
 }
+
+.card {
+  display: grid;
+  height: auto;
+  width: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  margin-top: 50px;
+  margin-left: auto;
+    margin-right: auto;
+
+  /* makes the whole card focusable */
+  outline: none;
+
+  /* microinteraction: keep it cheap */
+  transition:
+    transform 200ms cubic-bezier(.4, 0, .2, 1),
+    box-shadow 200ms cubic-bezier(.4, 0, .2, 1),
+    border-color 200ms cubic-bezier(.4, 0, .2, 1);
+}
+
+
+.card__media {
+  aspect-ratio: 16 / 9;
+  background-image: url("https://picsum.photos/800/450");
+  background-size: cover;
+  background-position: center;
+
+  /* subtle media movement */
+  transition: transform 250ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.card__body {
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+  text-align: center;
+}
+
+.card__eyebrow {
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 0;
+  opacity: .75;
+}
+
+.card__title {
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.card__desc {
+  margin: 0;
+  line-height: 1.5;
+  opacity: .85;
+  max-width: 60ch;
+}
+
+.card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.card__link {
+  width: fit-content;
+  text-decoration: none;
+  font-weight: 600;
+  
+
+  /* underline that animates */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+
+  transition:
+    background-size 200ms cubic-bezier(.4, 0, .2, 1),
+    transform 200ms cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Hover + Focus-visible: SAME behavior */
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+.card:hover .card__media,
+.card:focus-visible .card__media {
+  transform: scale(1.02);
+}
+
+.card:hover .card__link,
+.card:focus-visible .card__link {
+  background-size: 100% 2px;
+  transform: translateX(2px);
+}
+
+/* Active: tiny press */
+.card:active {
+  transform: translateY(-1px);
+}
+
+/* Subtle "quality" lift on the FRONT face only */
+    .flip-card:hover .flip-card__face--front,
+    .flip-card:focus-visible .flip-card__face--front {
+      box-shadow: 0 16px 30px rgba(0, 0, 0, .12);
+      border-color: rgba(0, 0, 0, .22);
+    }
+
+    .flip-card:hover .card__media,
+    .flip-card:focus-visible .card__media {
+      transform: scale(1.02);
+    }
+
+    .flip-card:hover .card__link,
+    .flip-card:focus-visible .card__link {
+      background-size: 100% 2px;
+      transform: translateX(2px);
+    }
+
+    /* --- Back face --- */
+    .flip-card__face--back {
+      transform: rotateY(180deg);
+      padding: 16px;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 10px;
+    }
+
+    .back__title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .back__list {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.6;
+      opacity: .9;
+    }
+
+    .back__note {
+      margin: 0;
+      opacity: .8;
+      line-height: 1.5;
+    }
+
+    .back__cta {
+      display: inline-block;
+      width: fit-content;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, .16);
+      text-decoration: none;
+      color: inherit;
+      font-weight: 600;
+
+      transition: transform 150ms cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .back__cta:hover,
+    .back__cta:focus-visible {
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      padding: 20px;
+    }
+/* .card-container article:first-of-type {
+    align-self: right;
+}
+
+.card-container article:last-of-type {
+    align-self: left;
+} */
+
+
 
 
 
@@ -381,7 +578,34 @@ table {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card__media,
+  .card__link {
+    transition: none !important;   
+  }
+}
 
+/* --- Reduced motion: no 3D flip --- */
+    @media (prefers-reduced-motion: reduce) {
+      .flip-card__inner,
+      .card__media,
+      .card__link,
+      .back__cta {
+        transition: none !important;
+      }
+
+      /* Disable flip. Keep it simple. */
+      .flip-card:hover .flip-card__inner,
+      .flip-card:focus-visible .flip-card__inner {
+        transform: none !important;
+      }
+
+      /* Optional: show only front content in reduced motion */
+      .flip-card__face--back {
+        display: none;
+      }
+    }
 
 
 
